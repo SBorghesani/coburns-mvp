@@ -70,7 +70,7 @@ export const Combinations = () => {
 
         return fetch("http://localhost:8088/savedCombinations", fetchOptions)
             .then(() => {
-                history.push("/savedCombinations")
+                history.push("/myCombinations")
             })
     }
 
@@ -94,7 +94,7 @@ export const Combinations = () => {
                             <option value="">Select a material</option>
                             {materials.map(material => (
                                 <option key={material.id} id={material.id} value={material.id}>
-                                    {material.materialType}
+                                    {`${material.materialType} - ($${material.price})`}
                                 </option>
                             ))}
                         </select>
@@ -116,7 +116,7 @@ export const Combinations = () => {
                             <option value="">Select a color</option>
                             {colors.map(color => (
                                 <option key={color.id} id={color.id} value={color.id}>
-                                    {color.color}
+                                    {`${color.color} - ($${color.price})`}
                                 </option>
                             ))}
                         </select>
@@ -138,7 +138,7 @@ export const Combinations = () => {
                             <option value="">Select a hinge</option>
                             {hinges.map(hinge => (
                                 <option key={hinge.id} id={hinge.id} value={hinge.id}>
-                                    {hinge.hingeType}
+                                    {`${hinge.hingeType} - ($${hinge.price})`}
                                 </option>
                             ))}
                         </select>
@@ -160,7 +160,7 @@ export const Combinations = () => {
                             <option value="">Select dimensions</option>
                             {dimensions.map(dimension => (
                                 <option key={dimension.id} id={dimension.id} value={dimension.id}>
-                                    {dimension.dimension}
+                                    {`${dimension.dimension} - ($${dimension.price})`}
                                 </option>
                             ))}
                         </select>
