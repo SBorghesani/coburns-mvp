@@ -9,6 +9,7 @@ export const CombinationList = () => {
     const [combinations, updateCombinations] = useState([])
     const history = useHistory()
     const currentUser = getCurrentUser()
+    let comboCounter = []
     const [order, updateOrder] = useState({
         material: "",
         color: "",
@@ -49,12 +50,12 @@ export const CombinationList = () => {
             <>
             {combinations.map(
                 (combination) => {
-                    let comboCounter = 0
                     if (parseInt(currentUser) === combination.userId) {
+                        comboCounter.push(combination)
                         return <div className="combinations" key={`combination--${combination.id}`}>
                             <img src={generic} alt="generic metal door" width="150" height="250"/>
                             <ul className={`combination__list`}>
-                                <li> <h3>{`Saved Combination #${comboCounter}`} </h3></li> 
+                                <li> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li> 
                                 <li> {`Material: ${combination.material.materialType}`}</li>
                                 <li>{`Hinge: ${combination.hinge.hingeType}`}</li>
                                 <li>{`Color: ${combination.color.color}`}</li>
