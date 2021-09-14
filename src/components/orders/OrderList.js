@@ -7,6 +7,7 @@ import { getAllOrders, getCurrentUser } from "../ApiManager"
 export const OrderList = () => {
     const [orders, setOrders] = useState([])
     const currentUser = getCurrentUser()
+    let comboCounter = []
 
     useEffect(() => {
         getAllOrders()
@@ -21,9 +22,10 @@ export const OrderList = () => {
             {orders.map(
                 (order) => {
                     if (parseInt(currentUser) === order.userId) {
+                        comboCounter.push(order)
                         return <div className="orders" key={`order--${order.id}`}>
                             <ul className={`order__list`}>
-                                <li> <h3>{`Order #${order.id}`} </h3></li>
+                                <li> <h3>{`Order #${comboCounter.length}`} </h3></li>
                                 <button onClick={() => {
                                     // deleteTicket(ticket.id)
                                 }}>Delete</button>
