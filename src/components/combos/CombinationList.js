@@ -1,36 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getAllSavedCombos, getCurrentUser } from '../ApiManager'
+import { getAllSavedCombos, getCurrentUser, postOrder } from '../ApiManager'
 import './CombinationList.css'
+import generic from "../../images/genericDoor.png"
 
 
 export const CombinationList = () => {
     const [combinations, updateCombinations] = useState([])
     const history = useHistory()
     const currentUser = getCurrentUser()
-    let comboCounter = 0
-
+    const [order, updateOrder] = useState({
+        material: "",
+        color: "",
+        hinge: "",
+        dimensions: "",
+    });
+    
     useEffect(() => {
         getAllSavedCombos()
-            .then((comboArray) => {
-                updateCombinations(comboArray)
-            })
-        },
-        []
+        .then((comboArray) => {
+            updateCombinations(comboArray)
+        })
+    },
+    []
     )
 
+    const saveOrder = (order) => {
+        const newOrder = {
+            materialId: parseInt(order.materialId),
+            colorId: parseInt(order.colorId),
+            hingeId: parseInt(order.hingeId),
+            dimensionsId: parseInt(order.dimensionsId),
+            userId: parseInt(localStorage.getItem("coburn_customer"))
+        }
+
+        postOrder(newOrder)
+            .then(() => {
+                history.push("/orderHistory")
+            })
+    }
+    
     const calculateTotalPrice = (comboObject) => {
         return (comboObject.material.price + comboObject.hinge.price + comboObject.color.price 
             + comboObject.dimensions.price).toFixed(2)
-    }
-
-    return (
-        <>
+        }
+        
+        return (
+            <>
             {combinations.map(
                 (combination) => {
-                    comboCounter++
+                    let comboCounter = 0
                     if (parseInt(currentUser) === combination.userId) {
-                        return <div key={`combination--${combination.id}`}>
+                        return <div className="combinations" key={`combination--${combination.id}`}>
+                            <img src={generic} alt="generic metal door" width="150" height="250"/>
                             <ul className={`combination__list`}>
                                 <li> <h3>{`Saved Combination #${comboCounter}`} </h3></li> 
                                 <li> {`Material: ${combination.material.materialType}`}</li>
@@ -41,6 +63,18 @@ export const CombinationList = () => {
                                 <button onClick={() => {
                                     // deleteTicket(ticket.id)
                                 }}>Delete</button>
+                                <button onClick={() => {
+                                    const copyState = {...combination}
+                                    // const copyState = {...order}
+                                    // copyState.material = combination.material.id
+                                    // copyState.hinge = combination.hinge.id
+                                    // copyState.color = combination.color.id
+                                    // copyState.dimensions = combination.dimensions.id
+                                    // copyState.userId = parseInt(currentUser)
+                                    // updateOrder(copyState)
+                                    // console.log(order)
+                                    saveOrder(copyState)
+                                }}>Purchase</button>
                             </ul>
                         </div>
                     }
