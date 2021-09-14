@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getAllSavedCombos, getCurrentUser, postOrder } from '../ApiManager'
+import { getAllSavedCombos, getCurrentUser, postOrder, deleteCombination } from '../ApiManager'
 import './CombinationList.css'
 import generic from "../../images/genericDoor.png"
 
@@ -41,6 +41,15 @@ export const CombinationList = () => {
             })
     }
     
+    const deleteCombo = (id) => {
+        deleteCombination(id)
+            .then(() => {
+                getAllSavedCombos()
+                .then((data) => {
+                    updateCombinations(data)})
+            })
+    }
+
     const calculateTotalPrice = (comboObject) => {
         return (comboObject.material.price + comboObject.hinge.price + comboObject.color.price 
             + comboObject.dimensions.price).toFixed(2)
@@ -62,7 +71,7 @@ export const CombinationList = () => {
                                 <li>{`Dimensions: ${combination.dimensions.dimension}`}</li>
                                 <li>{`Total Price: $${calculateTotalPrice(combination)}`}</li>
                                 <button onClick={() => {
-                                    // deleteTicket(ticket.id)
+                                    deleteCombo(combination.id)
                                 }}>Delete</button>
                                 <button onClick={() => {
                                     const copyState = {...combination}

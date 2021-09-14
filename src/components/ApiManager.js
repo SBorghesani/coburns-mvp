@@ -56,3 +56,15 @@ export const postOrder =(order) => {
 
     return fetch("http://localhost:8088/orders", fetchOptions)
 }
+
+export const deleteCombination = (comboId) => {
+    return fetch(`http://localhost:8088/savedCombinations/${comboId}`, {
+        method: "DELETE"
+    })
+}
+
+export const deleteOrder = (orderId) => {
+    return fetch(`http://localhost:8088/orders/${orderId}`, {
+        method: "DELETE"
+    })
+}
