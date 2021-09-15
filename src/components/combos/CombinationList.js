@@ -16,14 +16,14 @@ export const CombinationList = () => {
         hinge: "",
         dimensions: "",
     });
-    
+
     useEffect(() => {
         getAllSavedCombos()
-        .then((comboArray) => {
-            updateCombinations(comboArray)
-        })
+            .then((comboArray) => {
+                updateCombinations(comboArray)
+            })
     },
-    []
+        []
     )
 
     const saveOrder = (order) => {
@@ -40,52 +40,52 @@ export const CombinationList = () => {
                 history.push("/orderHistory")
             })
     }
-    
+
     const deleteCombo = (id) => {
         deleteCombination(id)
             .then(() => {
                 getAllSavedCombos()
-                .then((data) => {
-                    updateCombinations(data)})
+                    .then((data) => {
+                        updateCombinations(data)
+                    })
             })
     }
 
     const calculateTotalPrice = (comboObject) => {
-        return (comboObject.material.price + comboObject.hinge.price + comboObject.color.price 
+        return (comboObject.material.price + comboObject.hinge.price + comboObject.color.price
             + comboObject.dimensions.price).toFixed(2)
-        }
-        
-        return (
-            <>
+    }
+
+    return (
+        <>
             {combinations.map(
                 (combination) => {
                     if (parseInt(currentUser) === combination.userId) {
                         comboCounter.push(combination)
-                        return <div className="combinations" key={`combination--${combination.id}`}>
-                            <img src={generic} alt="generic metal door" width="150" height="250"/>
+                        return <div className="combinations__container">
+                            <div className="combinations" key={`combination--${combination.id}`}>
+                            <img src={generic} alt="generic metal door" width="150" height="250" />
                             <ul className={`combination__list`}>
-                                <li> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li> 
-                                <li> {`Material: ${combination.material.materialType}`}</li>
-                                <li>{`Hinge: ${combination.hinge.hingeType}`}</li>
-                                <li>{`Color: ${combination.color.color}`}</li>
-                                <li>{`Dimensions: ${combination.dimensions.dimension}`}</li>
-                                <li>{`Total Price: $${calculateTotalPrice(combination)}`}</li>
+                                <li key={`combination_counter`}> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li>
+                                <li key={`combination_material`}> {`Material: ${combination.material.materialType}`}</li>
+                                <li key={`combination_hinge`}>{`Hinge: ${combination.hinge.hingeType}`}</li>
+                                <li key={`combination_color`}>{`Color: ${combination.color.color}`}</li>
+                                <li key={`combination_dimension`}>{`Dimensions: ${combination.dimensions.dimension}`}</li>
+                                <li key={`combination_price`}>{`Total Price: $${calculateTotalPrice(combination)}`}</li>
                                 <button onClick={() => {
                                     deleteCombo(combination.id)
                                 }}>Delete</button>
                                 <button onClick={() => {
-                                    const copyState = {...combination}
-                                    // const copyState = {...order}
-                                    // copyState.material = combination.material.id
-                                    // copyState.hinge = combination.hinge.id
-                                    // copyState.color = combination.color.id
-                                    // copyState.dimensions = combination.dimensions.id
-                                    // copyState.userId = parseInt(currentUser)
-                                    // updateOrder(copyState)
-                                    // console.log(order)
+                                    const copyState = { ...combination }
                                     saveOrder(copyState)
                                 }}>Purchase</button>
+                                <button type="button"
+                                    className="btn btn-success "
+                                    onClick={() => { history.push(`/myCombinations/${combination.id}`) }}>
+                                    Update
+                                </button>
                             </ul>
+                        </div>
                         </div>
                     }
                 })
