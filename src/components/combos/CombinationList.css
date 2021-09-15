@@ -2,6 +2,7 @@ ul {
     list-style-type: none;
 }
 
-.combinations {
+.combinations__container {
     display: flex;
+    flex-direction: row;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom'
-import { getMaterials, getColors, getDimensions, getHinges } from "../ApiManager"
+import { useHistory, useParams } from "react-router";
+import { getCombination, getMaterials, getColors, getDimensions, getHinges, updateCombination, getCurrentUser } from '../ApiManager'
 import "./Combinations.css"
 import squareHinge from "../../images/hinge-square.jpeg"
 import roundHinge from "../../images/hinge-rounded.jpeg"
@@ -14,19 +14,27 @@ import singleDoor from "../../images/single-door.jpeg"
 import doubleDoor from "../../images/double-door.jpeg"
 
 
-export const Combinations = () => {
+
+export const CombinationEdit = () => {
+
+    const [combo, updateCombo] = useState({})
     const [materials, setMaterials] = useState([])
     const [colors, setColors] = useState([])
     const [hinges, setHinges] = useState([])
     const [dimensions, setDimensions] = useState([])
+    const { comboId } = useParams()
     const history = useHistory()
-    const [combination, updateCombination] = useState({
-        material: "",
-        color: "",
-        hinge: "",
-        dimensions: "",
-        price: 0
-    });
+    const currentUser = getCurrentUser()
+
+
+    useEffect(() => {
+        getCombination(comboId)
+            .then((comboObject) => {
+                updateCombo(comboObject)
+            })
+    },
+        []
+    )
 
     useEffect(() => {
         getMaterials()
@@ -61,26 +69,19 @@ export const Combinations = () => {
         []
     )
 
-    const saveCombination = (event) => {
+    const newCombo = (event) => {
         event.preventDefault()
-        const newCombination = {
-            materialId: parseInt(combination.material),
-            colorId: parseInt(combination.color),
-            hingeId: parseInt(combination.hinge),
-            dimensionsId: parseInt(combination.dimensions),
-            price: combination.price,
-            userId: parseInt(localStorage.getItem("coburn_customer"))
+        const updatedCombo = {
+            materialId: combo?.materialId,
+            colorId: combo?.colorId,
+            hingeId: combo?.hingeId,
+            dimensionsId: combo?.dimensionsId,
+            price: combo.price,
+            userId: parseInt(currentUser)
         }
+        console.log("updatedCombo", updatedCombo)
 
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newCombination)
-        }
-
-        return fetch("http://localhost:8088/savedCombinations", fetchOptions)
+        updateCombination(comboId, updatedCombo)
             .then(() => {
                 history.push("/myCombinations")
             })
@@ -88,73 +89,73 @@ export const Combinations = () => {
 
     return (
         <>
+            <h2>Edit Combination</h2>
+            <p>{combo.id}</p>
+
             <form>
-                <h2>Combinations</h2>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue=""
+                            defaultValue={combo?.material}
                             name="material"
                             id="materialId"
                             className="form-control"
                             onChange={(event) => {
-                                const copyState = { ...combination }
-                                copyState.material = event.target.value
-                                updateCombination(copyState)
+                                const copyState = { ...combo }
+                                copyState.materialId = parseInt(event.target.value)
+                                updateCombo(copyState)
+                                console.log("material",combo.materialId)
                             }}
                         >
-                            <option value="">Select a material</option>
                             {materials.map(material => (
                                 <option key={material.id} id={material.id} value={material.id}>
                                     {`${material.materialType} - ($${material.price})`}
                                 </option>
                             ))}
                         </select>
-                        {combination.material === '1' ? <img className="optionPic" src={steelPlate} alt="steel plate" width="50" height="50" />
-                            : combination.material === '2' ? <img className="optionPic" src={alumPlate} alt="aluminum plate" width="50" height="50" />
-                                :''}
+                        {(parseInt(combo.material) || parseInt(combo.materialId)) === 1 ? <img className="optionPic" src={steelPlate} alt="steel plate" width="50" height="50" />
+                            : (parseInt(combo.material) || parseInt(combo.materialId)) === 2 ? <img className="optionPic" src={alumPlate} alt="aluminum plate" width="50" height="50" />
+                                : ''}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue=""
+                            defaultValue={combo?.color?.id}
                             name="color"
                             id="colorId"
                             className="form-control"
                             onChange={(event) => {
-                                const copyState = { ...combination }
-                                copyState.color = event.target.value
-                                updateCombination(copyState)
+                                const copyState = { ...combo }
+                                copyState.colorId = parseInt(event.target.value)
+                                updateCombo(copyState)
                             }}
                         >
-                            <option value="">Select a color</option>
                             {colors.map(color => (
                                 <option key={color.id} id={color.id} value={color.id}>
                                     {`${color.color} - ($${color.price})`}
                                 </option>
                             ))}
                         </select>
-                        {combination.color === '1' ? <img className="optionPic" src={blackSwatch} alt="black" width="50" height="50" />
-                                : combination.color === '2' ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
-                                    : combination.color === '3' ? <img className="optionPic" src={lightGreySwatch} alt="light grey" width="50" height="50" />
-                                        : ''}
+                        {(parseInt(combo.color) || combo.colorId) === 1 ? <img className="optionPic" src={blackSwatch} alt="black" width="50" height="50" />
+                            : (parseInt(combo.color) || combo.colorId) === 2 ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
+                                : (parseInt(combo.color) || combo.colorId) === 3 ? <img className="optionPic" src={lightGreySwatch} alt="light grey" width="50" height="50" />
+                                    : ''}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue=""
+                            defaultValue={combo?.hinge?.id}
                             name="hinge"
                             id="hingeId"
                             className="form-control"
                             onChange={(event) => {
-                                const copyState = { ...combination }
-                                copyState.hinge = event.target.value
-                                updateCombination(copyState)
+                                const copyState = { ...combo }
+                                copyState.hingeId = parseInt(event.target.value)
+                                updateCombo(copyState)
                             }}
                         >
-                            <option value="">Select a hinge</option>
                             {hinges.map(hinge => (
                                 <option key={hinge.id} id={hinge.id} value={hinge.id}>
                                     {`${hinge.hingeType} - ($${hinge.price})`}
@@ -162,42 +163,40 @@ export const Combinations = () => {
                             ))}
                         </select>
                         {
-                            combination.hinge === '1' ? <img className="optionPic" src={squareHinge} alt="square hinge" width="50" height="50" />
-                                : combination.hinge === '2' ? <img className="optionPic" src={roundHinge} alt="round hinge" width="50" height="50" />
-                                    : combination.hinge === '3' ? <img className="optionPic" src={hiddenHinge} alt="hidden hinge" width="50" height="50" />
+                            (parseInt(combo.hinge) || combo.hingeId) === 1 ? <img className="optionPic" src={squareHinge} alt="square hinge" width="50" height="50" />
+                                : (parseInt(combo.hinge) || combo.hingeId) === 2 ? <img className="optionPic" src={roundHinge} alt="round hinge" width="50" height="50" />
+                                    : (parseInt(combo.hinge) || combo.hingeId) === 3 ? <img className="optionPic" src={hiddenHinge} alt="hidden hinge" width="50" height="50" />
                                         : ''
                         }
-
-
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue=""
+                            defaultValue={combo?.dimensions?.id}
                             name="dimensions"
                             id="dimensionsId"
                             className="form-control"
                             onChange={(event) => {
-                                const copyState = { ...combination }
-                                copyState.dimensions = event.target.value
-                                updateCombination(copyState)
+                                const copyState = { ...combo }
+                                copyState.dimensionsId = parseInt(event.target.value)
+                                updateCombo(copyState)
                             }}
                         >
-                            <option value="">Select dimensions</option>
                             {dimensions.map(dimension => (
                                 <option key={dimension.id} id={dimension.id} value={dimension.id}>
                                     {`${dimension.dimension} - ($${dimension.price})`}
                                 </option>
                             ))}
                         </select>
-                        {combination.dimensions === '1' ? <img className="optionPic" src={singleDoor} alt="single door" width="50" height="50" />
-                                : combination.dimensions === '2' ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
-                                    : ''}
+                        {console.log(combo)}
+                        {(parseInt(combo.dimensions) || combo.dimesnsionsId) === 1 ? <img className="optionPic" src={singleDoor} alt="single door" width="50" height="50" />
+                            : (parseInt(combo.dimensions) || combo.dimensionsId) === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
+                                : ''}
                     </div>
                 </fieldset>
-                <button className="btn btn-primary" onClick={saveCombination}>
-                    Save combination
+                <button className="btn btn-primary" onClick={newCombo}>
+                    Update
                 </button>
             </form>
         </>

@@ -68,3 +68,18 @@ export const deleteOrder = (orderId) => {
         method: "DELETE"
     })
 }
+
+export const getCombination = (id) => {
+    return fetch(`http://localhost:8088/savedCombinations/${id}/?_expand=material&_expand=color&_expand=dimensions&_expand=hinge&_expand=user`)
+        .then(res => res.json())
+}
+
+export const updateCombination = (id, com) => {
+    return fetch(`http://localhost:8088/savedCombinations/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(com)
+    })
+}
