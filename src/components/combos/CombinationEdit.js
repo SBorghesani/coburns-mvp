@@ -79,14 +79,13 @@ export const CombinationEdit = () => {
             price: combo.price,
             userId: parseInt(currentUser)
         }
-        console.log("updatedCombo", updatedCombo)
 
         updateCombination(comboId, updatedCombo)
             .then(() => {
                 history.push("/myCombinations")
             })
     }
-
+    console.log("material",combo.materialId)
     return (
         <>
             <h2>Edit Combination</h2>
@@ -96,32 +95,31 @@ export const CombinationEdit = () => {
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue={combo?.material}
+                            defaultValue=''
                             name="material"
                             id="materialId"
                             className="form-control"
                             onChange={(event) => {
                                 const copyState = { ...combo }
                                 copyState.materialId = parseInt(event.target.value)
-                                updateCombo(copyState)
-                                console.log("material",combo.materialId)
+                                updateCombo(copyState)                         
                             }}
                         >
                             {materials.map(material => (
-                                <option key={material.id} id={material.id} value={material.id}>
+                                <option key={material.id} id={material.id} value={material.id} selected={material.id === combo.materialId ? 'selected' : ''}>
                                     {`${material.materialType} - ($${material.price})`}
                                 </option>
                             ))}
                         </select>
-                        {(parseInt(combo.material) || parseInt(combo.materialId)) === 1 ? <img className="optionPic" src={steelPlate} alt="steel plate" width="50" height="50" />
-                            : (parseInt(combo.material) || parseInt(combo.materialId)) === 2 ? <img className="optionPic" src={alumPlate} alt="aluminum plate" width="50" height="50" />
+                        {parseInt(combo.materialId) === 1 ? <img className="optionPic" src={steelPlate} alt="steel plate" width="50" height="50" />
+                            : parseInt(combo.materialId) === 2 ? <img className="optionPic" src={alumPlate} alt="aluminum plate" width="50" height="50" />
                                 : ''}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue={combo?.color?.id}
+                            defaultValue=''
                             name="color"
                             id="colorId"
                             className="form-control"
@@ -132,21 +130,21 @@ export const CombinationEdit = () => {
                             }}
                         >
                             {colors.map(color => (
-                                <option key={color.id} id={color.id} value={color.id}>
+                                <option key={color.id} id={color.id} value={color.id} selected={color.id === combo.colorId ? 'selected' : ''}>
                                     {`${color.color} - ($${color.price})`}
                                 </option>
                             ))}
                         </select>
-                        {(parseInt(combo.color) || combo.colorId) === 1 ? <img className="optionPic" src={blackSwatch} alt="black" width="50" height="50" />
-                            : (parseInt(combo.color) || combo.colorId) === 2 ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
-                                : (parseInt(combo.color) || combo.colorId) === 3 ? <img className="optionPic" src={lightGreySwatch} alt="light grey" width="50" height="50" />
+                        {combo.colorId === 1 ? <img className="optionPic" src={blackSwatch} alt="black" width="50" height="50" />
+                            : combo.colorId=== 2 ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
+                                : combo.colorId === 3 ? <img className="optionPic" src={lightGreySwatch} alt="light grey" width="50" height="50" />
                                     : ''}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue={combo?.hinge?.id}
+                            defaultValue=''
                             name="hinge"
                             id="hingeId"
                             className="form-control"
@@ -157,15 +155,15 @@ export const CombinationEdit = () => {
                             }}
                         >
                             {hinges.map(hinge => (
-                                <option key={hinge.id} id={hinge.id} value={hinge.id}>
+                                <option key={hinge.id} id={hinge.id} value={hinge.id} selected={hinge.id === combo.hingeId ? 'selected' : ''}>
                                     {`${hinge.hingeType} - ($${hinge.price})`}
                                 </option>
                             ))}
                         </select>
                         {
-                            (parseInt(combo.hinge) || combo.hingeId) === 1 ? <img className="optionPic" src={squareHinge} alt="square hinge" width="50" height="50" />
-                                : (parseInt(combo.hinge) || combo.hingeId) === 2 ? <img className="optionPic" src={roundHinge} alt="round hinge" width="50" height="50" />
-                                    : (parseInt(combo.hinge) || combo.hingeId) === 3 ? <img className="optionPic" src={hiddenHinge} alt="hidden hinge" width="50" height="50" />
+                            combo.hingeId === 1 ? <img className="optionPic" src={squareHinge} alt="square hinge" width="50" height="50" />
+                                : combo.hingeId === 2 ? <img className="optionPic" src={roundHinge} alt="round hinge" width="50" height="50" />
+                                    : combo.hingeId === 3 ? <img className="optionPic" src={hiddenHinge} alt="hidden hinge" width="50" height="50" />
                                         : ''
                         }
                     </div>
@@ -173,7 +171,7 @@ export const CombinationEdit = () => {
                 <fieldset>
                     <div className="form-group">
                         <select
-                            defaultValue={combo?.dimensions?.id}
+                            defaultValue=''
                             name="dimensions"
                             id="dimensionsId"
                             className="form-control"
@@ -184,14 +182,14 @@ export const CombinationEdit = () => {
                             }}
                         >
                             {dimensions.map(dimension => (
-                                <option key={dimension.id} id={dimension.id} value={dimension.id}>
+                                <option key={dimension.id} id={dimension.id} value={dimension.id} selected={dimension.id === combo.dimensionsId ? 'selected' : ''}>
                                     {`${dimension.dimension} - ($${dimension.price})`}
                                 </option>
                             ))}
                         </select>
                         {console.log(combo)}
-                        {(parseInt(combo.dimensions) || combo.dimesnsionsId) === 1 ? <img className="optionPic" src={singleDoor} alt="single door" width="50" height="50" />
-                            : (parseInt(combo.dimensions) || combo.dimensionsId) === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
+                        {combo.dimensionsId === 1 ? <img className="optionPic" src={singleDoor} alt="single door" width="50" height="50" />
+                            : combo.dimensionsId === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
                                 : ''}
                     </div>
                 </fieldset>
