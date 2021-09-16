@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { getAllSavedCombos, getCurrentUser, postOrder, deleteCombination } from '../ApiManager'
 import './CombinationList.css'
 import generic from "../../images/genericDoor.png"
+import { OrderForm } from "../orders/OrderForm"
 
 
 export const CombinationList = () => {
@@ -10,6 +11,7 @@ export const CombinationList = () => {
     const history = useHistory()
     const currentUser = getCurrentUser()
     let comboCounter = []
+    const [toggleForm, setToggle] = useState(false)
     const [order, updateOrder] = useState({
         material: "",
         color: "",
@@ -37,7 +39,7 @@ export const CombinationList = () => {
 
         postOrder(newOrder)
             .then(() => {
-                history.push("/orderHistory")
+                history.push("/orderHistory/")
             })
     }
 
@@ -64,28 +66,28 @@ export const CombinationList = () => {
                         comboCounter.push(combination)
                         return <div className="combinations__container">
                             <div className="combinations" key={`combination--${combination.id}`}>
-                            <img src={generic} alt="generic metal door" width="150" height="250" />
-                            <ul className={`combination__list`}>
-                                <li key={`combination_counter`}> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li>
-                                <li key={`combination_material`}> {`Material: ${combination.material.materialType}`}</li>
-                                <li key={`combination_hinge`}>{`Hinge: ${combination.hinge.hingeType}`}</li>
-                                <li key={`combination_color`}>{`Color: ${combination.color.color}`}</li>
-                                <li key={`combination_dimension`}>{`Dimensions: ${combination.dimensions.dimension}`}</li>
-                                <li key={`combination_price`}>{`Total Price: $${calculateTotalPrice(combination)}`}</li>
-                                <button onClick={() => {
-                                    deleteCombo(combination.id)
-                                }}>Delete</button>
-                                <button onClick={() => {
-                                    const copyState = { ...combination }
-                                    saveOrder(copyState)
-                                }}>Purchase</button>
-                                <button type="button"
-                                    className="btn btn-success "
-                                    onClick={() => { history.push(`/myCombinations/${combination.id}`) }}>
-                                    Update
+                                <img src={generic} alt="generic metal door" width="150" height="250" />
+                                <ul className={`combination__list`}>
+                                    <li key={`combination_counter`}> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li>
+                                    <li key={`combination_material`}> {`Material: ${combination.material.materialType}`}</li>
+                                    <li key={`combination_hinge`}>{`Hinge: ${combination.hinge.hingeType}`}</li>
+                                    <li key={`combination_color`}>{`Color: ${combination.color.color}`}</li>
+                                    <li key={`combination_dimension`}>{`Dimensions: ${combination.dimensions.dimension}`}</li>
+                                    <li key={`combination_price`}>{`Total Price: $${calculateTotalPrice(combination)}`}</li>
+                                    <button onClick={() => {
+                                        deleteCombo(combination.id)
+                                    }}>Delete</button>
+                                    <button onClick={() => {
+                                        {history.push(`orders/${combination.id}`)}
+                                    }}>Purchase</button>
+                                    <button type="button"
+                                        className="btn btn-success "
+                                        onClick={() => { history.push(`/myCombinations/${combination.id}`) }}>
+                                        Update
                                 </button>
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
+                                {/* {(toggleForm) ? <div>{OrderForm()}</div> : ''} */}
                         </div>
                     }
                 })
@@ -93,3 +95,9 @@ export const CombinationList = () => {
         </>
     )
 }
+
+
+// const copyState = { ...combination } 
+//                                         saveOrder(copyState)
+
+

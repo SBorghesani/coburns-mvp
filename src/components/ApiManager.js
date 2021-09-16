@@ -54,7 +54,7 @@ export const postOrder =(order) => {
         body: JSON.stringify(order)
     }
 
-    return fetch("http://localhost:8088/orders", fetchOptions)
+    return fetch(`http://localhost:8088/orders/`, fetchOptions)
 }
 
 export const deleteCombination = (comboId) => {
@@ -82,4 +82,9 @@ export const updateCombination = (id, com) => {
         },
         body: JSON.stringify(com)
     })
+}
+
+export const getOrder = (id) => {
+    return fetch(`http://localhost:8088/orders/${id}/?_expand=material&_expand=hinge&_expand=color&_expand=dimensions&_expand=user`)
+        .then(res => res.json)
 }
