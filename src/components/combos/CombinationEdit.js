@@ -85,7 +85,7 @@ export const CombinationEdit = () => {
                 history.push("/myCombinations")
             })
     }
-    console.log("material",combo.materialId)
+
     return (
         <>
             <h2>Edit Combination</h2>
@@ -187,7 +187,6 @@ export const CombinationEdit = () => {
                                 </option>
                             ))}
                         </select>
-                        {console.log(combo)}
                         {combo.dimensionsId === 1 ? <img className="optionPic" src={singleDoor} alt="single door" width="50" height="50" />
                             : combo.dimensionsId === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
                                 : ''}

@@ -60,12 +60,13 @@ export const CombinationList = () => {
 
     return (
         <>
-            {combinations.map(
-                (combination) => {
-                    if (parseInt(currentUser) === combination.userId) {
-                        comboCounter.push(combination)
-                        return <div className="combinations__container">
-                            <div className="combinations" key={`combination--${combination.id}`}>
+
+            <section className="combination__container" >
+                {combinations.map(
+                    (combination) => {
+                        if (parseInt(currentUser) === combination.userId) {
+                            comboCounter.push(combination)
+                            return <div className="combinations" key={`combination--${combination.id}`}>
                                 <img src={generic} alt="generic metal door" width="150" height="250" />
                                 <ul className={`combination__list`}>
                                     <li key={`combination_counter`}> <h3>{`Saved Combination #${comboCounter.length}`} </h3></li>
@@ -78,26 +79,25 @@ export const CombinationList = () => {
                                         deleteCombo(combination.id)
                                     }}>Delete</button>
                                     <button onClick={() => {
-                                        {history.push(`orders/${combination.id}`)}
+                                        { history.push(`orders/${combination.id}`) }
                                     }}>Purchase</button>
                                     <button type="button"
                                         className="btn btn-success "
                                         onClick={() => { history.push(`/myCombinations/${combination.id}`) }}>
                                         Update
-                                </button>
+                                    </button>
+                                    <button 
+                                        onClick={() => { history.push(`/myCombinations/canvas/${combination.id}`) }}>
+                                        Add Custom Drawing
+                                    </button>
                                 </ul>
                             </div>
-                                {/* {(toggleForm) ? <div>{OrderForm()}</div> : ''} */}
-                        </div>
-                    }
-                })
-            }
+                        }
+                    })
+                }
+            </section>
         </>
     )
 }
-
-
-// const copyState = { ...combination } 
-//                                         saveOrder(copyState)
 
 
