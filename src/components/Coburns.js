@@ -12,7 +12,7 @@ export const Coburns = () => {
 
     return (
         <>
-            <h1><img src={coburnLogo} alt="logo" width="max" height="200"/></h1>
+            <h1 id="logo"><img src={coburnLogo} alt="logo" width="max" height="200"/></h1>
             <Route
                 render={() => {
                     if (localStorage.getItem("coburn_customer")) {

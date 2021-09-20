@@ -1,10 +1,18 @@
+link {
+    border-style: solid;
+    color: black;
+}
+
 .navbar {
-    /* height: 10em; */
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
-    background-color: rgb(141, 87, 73);
+    background-color: rgba(146, 57, 34, 0.829);
     color: white;
+    margin-top: 0;
+    margin-left: 0;
+    height: 3em;
 }
 
 .navbar__item {

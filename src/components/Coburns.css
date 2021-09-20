@@ -9,3 +9,8 @@ body {
     color: rgb(0, 0, 0)
 }
 
+#logo {
+    background-color: rgba(146, 146, 146, 0.877);
+    margin: 0;
+}
+

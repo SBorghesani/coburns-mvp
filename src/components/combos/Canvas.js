@@ -26,23 +26,6 @@ export const Canvas = (props) => {
         }
     }
 
-    // const newCombo = (event) => {
-    //     event.preventDefault()
-    //     const updatedCombo = {
-    //         materialId: combo?.materialId,
-    //         colorId: combo?.colorId,
-    //         hingeId: combo?.hingeId,
-    //         dimensionsId: combo?.dimensionsId,
-    //         price: combo.price,
-    //         userId: parseInt(currentUser),
-    //         customDrawing: 
-    //     }
-
-    //     updateCombination(comboId, updatedCombo)
-    //         .then(() => {
-    //             history.push("/myCombinations")
-    //         })
-    // }
     window.onload = () => {
         const canvas = document.getElementById('canvas');
         const saveButton = document.getElementById('save');
@@ -82,18 +65,20 @@ export const Canvas = (props) => {
             }
         }
         save() {
+            const copyState = {...combo}
+            console.log(copyState)
             const data = this.canvas.toDataURL('image/png');
             const a = document.createElement('a');
             a.href = data;
             a.download = 'image.png';
             console.log(a)
-            // a.click();
+            a.click();
             const updatedCombo = {
-                materialId: combo?.materialId,
-                colorId: combo?.colorId,
-                hingeId: combo?.hingeId,
-                dimensionsId: combo?.dimensionsId,
-                price: combo.price,
+                materialId: copyState.materialId,
+                colorId: copyState.colorId,
+                hingeId: copyState.hingeId,
+                dimensionsId: copyState.dimensionsId,
+                price: copyState.price,
                 userId: parseInt(currentUser),
                 customDrawing: a.href
             }

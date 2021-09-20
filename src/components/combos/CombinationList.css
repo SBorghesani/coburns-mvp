@@ -1,10 +1,19 @@
+img {
+    margin-top: 1em;
+}
 
 ul {
     list-style-type: none;
+    border-style: solid;
+    border-color: black;
+    background-color: rgba(160, 160, 160, 0.87);
+    margin-left: 3em;
+    padding-bottom: 5px;
 }
 
 .combinations {
     display: flex;
+    /* flex-wrap: wrap; */
     flex-direction: row;
     background-image: url(../../images/combo-list-background.png);
     border: solid;
@@ -19,8 +28,7 @@ ul {
     margin-right: 0;
     background-size: inherit;
     /* background-size: 80%; */
-    background-color: rgb(230, 230, 195);
-    background-blend-mode:multiply;
+    background-color: rgba(230, 230, 195, 0.747);
     padding: 2em;
 }
 
@@ -30,6 +38,8 @@ ul {
     flex-direction: row;
     margin-right: 0;
     content: inherit;
+    border: solid;
+    text-shadow: black;
 }
 
 .combination__container {
