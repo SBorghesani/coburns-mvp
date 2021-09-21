@@ -13,10 +13,7 @@ import lightGreySwatch from "../../images/light-grey-swatch.jpeg"
 import singleDoor from "../../images/single-door.jpeg"
 import doubleDoor from "../../images/double-door.jpeg"
 
-
-
 export const CombinationEdit = () => {
-
     const [combo, updateCombo] = useState({})
     const [materials, setMaterials] = useState([])
     const [colors, setColors] = useState([])
@@ -25,7 +22,6 @@ export const CombinationEdit = () => {
     const { comboId } = useParams()
     const history = useHistory()
     const currentUser = getCurrentUser()
-
 
     useEffect(() => {
         getCombination(comboId)
@@ -90,7 +86,6 @@ export const CombinationEdit = () => {
         <>
             <h2>Edit Combination</h2>
             <p>{combo.id}</p>
-
             <form>
                 <fieldset>
                     <div className="form-group">
@@ -191,10 +186,16 @@ export const CombinationEdit = () => {
                             : combo.dimensionsId === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
                                 : ''}
                     </div>
-                </fieldset>
+                </fieldset>         
                 <button className="btn btn-primary" onClick={newCombo}>
                     Update
                 </button>
+                    <div className="customDrawing">
+                        <p>Custom Drawing:</p>
+                        {
+                            combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="300" height="300"/> : 'No Custom Drawing'
+                        }
+                    </div>
             </form>
         </>
     )

@@ -1,3 +1,12 @@
 .optionPic {
     padding-left: 4em;
 }
+
+fieldset {
+    width: 30%;
+}
+
+.customDrawing{
+    border-top: solid;
+    margin-top: 2em;
+}

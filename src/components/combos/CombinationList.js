@@ -5,19 +5,11 @@ import './CombinationList.css'
 import generic from "../../images/genericDoor.png"
 import { OrderForm } from "../orders/OrderForm"
 
-
 export const CombinationList = () => {
     const [combinations, updateCombinations] = useState([])
     const history = useHistory()
     const currentUser = getCurrentUser()
     let comboCounter = []
-    const [toggleForm, setToggle] = useState(false)
-    const [order, updateOrder] = useState({
-        material: "",
-        color: "",
-        hinge: "",
-        dimensions: "",
-    });
 
     useEffect(() => {
         getAllSavedCombos()
@@ -60,7 +52,6 @@ export const CombinationList = () => {
 
     return (
         <>
-
             <section className="combination__container" >
                 {combinations.map(
                     (combination) => {
