@@ -88,8 +88,8 @@ export const Combinations = () => {
 
     return (
         <>
-            <form>
-                <h2>Select Combinations</h2>
+            <form className="combo__form">
+                <h2>⚙️ Select Combinations ⚙️</h2>
                 <fieldset>
                     <div className="form-group">
                         <select
@@ -194,7 +194,7 @@ export const Combinations = () => {
                                     : ''}
                     </div>
                 </fieldset>
-                <button className="btn btn-primary" onClick={saveCombination}>
+                <button className="btn save__button" onClick={saveCombination}>
                     Save 
                 </button>
             </form>

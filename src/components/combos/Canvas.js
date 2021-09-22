@@ -72,7 +72,7 @@ export const Canvas = (props) => {
         const a = document.createElement('a');
         a.href = data;
         a.download = 'image.png';
-        a.click();
+        // a.click();
         console.log(combo)
         const updatedCombo = {
             materialId: combo?.materialId,

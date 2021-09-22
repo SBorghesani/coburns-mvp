@@ -30,6 +30,7 @@ ul {
     /* background-size: 80%; */
     background-color: rgba(230, 230, 195, 0.747);
     padding: 2em;
+    box-shadow: 10px 5px 5px black;
 }
 
 .combinations__list {
@@ -48,3 +49,8 @@ ul {
     flex-direction: row;
 }
 
+fieldset {
+    display: flex;
+    width: 30%;
+    align-items: center;    
+}

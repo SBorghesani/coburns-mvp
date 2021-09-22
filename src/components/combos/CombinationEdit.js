@@ -84,9 +84,9 @@ export const CombinationEdit = () => {
 
     return (
         <>
-            <h2>Edit Combination</h2>
             <p>{combo.id}</p>
-            <form>
+            <form className="edit__container">
+                <h2>🛠 Edit Combination 🛠</h2>
                 <fieldset>
                     <div className="form-group">
                         <select
@@ -97,7 +97,7 @@ export const CombinationEdit = () => {
                             onChange={(event) => {
                                 const copyState = { ...combo }
                                 copyState.materialId = parseInt(event.target.value)
-                                updateCombo(copyState)                         
+                                updateCombo(copyState)
                             }}
                         >
                             {materials.map(material => (
@@ -131,7 +131,7 @@ export const CombinationEdit = () => {
                             ))}
                         </select>
                         {combo.colorId === 1 ? <img className="optionPic" src={blackSwatch} alt="black" width="50" height="50" />
-                            : combo.colorId=== 2 ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
+                            : combo.colorId === 2 ? <img className="optionPic" src={darkGreySwatch} alt="dark grey" width="50" height="50" />
                                 : combo.colorId === 3 ? <img className="optionPic" src={lightGreySwatch} alt="light grey" width="50" height="50" />
                                     : ''}
                     </div>
@@ -186,16 +186,16 @@ export const CombinationEdit = () => {
                             : combo.dimensionsId === 2 ? <img className="optionPic" src={doubleDoor} alt="double door" width="50" height="50" />
                                 : ''}
                     </div>
-                </fieldset>         
+                </fieldset>
                 <button className="btn btn-primary" onClick={newCombo}>
                     Update
                 </button>
-                    <div className="customDrawing">
-                        <p>Custom Drawing:</p>
-                        {
-                            combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="300" height="300"/> : 'No Custom Drawing'
-                        }
-                    </div>
+                <div className="customDrawing">
+                    <p>Custom Drawing:</p>
+                    {
+                        combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="300" height="300" /> : 'No Custom Drawing'
+                    }
+                </div>
             </form>
         </>
     )

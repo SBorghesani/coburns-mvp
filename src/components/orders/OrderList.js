@@ -29,6 +29,7 @@ export const OrderList = () => {
 
     return (
         <>
+            <section className="orders__container">
             {orders.map(
                 (order) => {
                     if (parseInt(currentUser) === order.userId) {
@@ -48,6 +49,7 @@ export const OrderList = () => {
                     }
                 })
             }
+            </section>
         </>
     )
 }

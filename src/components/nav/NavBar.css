@@ -18,5 +18,10 @@ link {
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
-    color:white;
+    color:white;   
+}
+
+.navbar__link {
+    font-size: 1.5em;
+    color: rgb(196, 195, 195);
 }
