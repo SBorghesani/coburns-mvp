@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router";
 import { getCombination, getCurrentUser, postOrder } from '../ApiManager'
+import './OrderForm.css'
 
 
 export const OrderForm = () => {
@@ -45,7 +46,7 @@ export const OrderForm = () => {
         <form className="orderForm">
             <h2 className="orderForm__title">Order Form</h2>
             <fieldset>
-                <label htmlFor="address"> Address </label>
+                <label htmlFor="address"> Address: </label>
                 <input onChange={(event) => {
                     const copyState = { ...combo }
                     copyState.address = event.target.value
@@ -54,7 +55,7 @@ export const OrderForm = () => {
                     type="text" id="address" className="form-control" placeholder="Street Address" required />
             </fieldset>
             <fieldset>
-                <label htmlFor="phone"> Phone Number </label>
+                <label htmlFor="phone"> Phone Number: </label>
                 <input onChange={(event) => {
                     const copyState = { ...combo }
                     copyState.phone = event.target.value
@@ -78,7 +79,7 @@ export const OrderForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="serviceDate">Requested Install Date</label>
+                    <label htmlFor="serviceDate">Requested Install Date: </label>
                     <input onChange={(event) => {
                         const copyState = { ...combo }
                         copyState.requestDate = event.target.value

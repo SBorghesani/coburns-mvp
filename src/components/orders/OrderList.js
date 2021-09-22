@@ -29,6 +29,7 @@ export const OrderList = () => {
 
     return (
         <>
+            {/* <h2 className="orderList__title">Placed Orders</h2> */}
             <section className="orders__container">
             {orders.map(
                 (order) => {

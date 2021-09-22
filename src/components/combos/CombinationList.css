@@ -13,7 +13,6 @@ ul {
 
 .combinations {
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: row;
     background-image: url(../../images/combo-list-background.png);
     border: solid;
@@ -27,7 +26,6 @@ ul {
     margin: 2em 2em 2em 2em;
     margin-right: 0;
     background-size: inherit;
-    /* background-size: 80%; */
     background-color: rgba(230, 230, 195, 0.747);
     padding: 2em;
     box-shadow: 10px 5px 5px black;
@@ -47,6 +45,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 fieldset {
