@@ -19,13 +19,14 @@ export const Canvas = (props) => {
         []
     )
 
-    const refreshPage = () => {
-        for (let i = 0; i < 1; i++) {
-            window.location.reload()
-        }
-    }
+    // const refreshPage = () => {
+    //     for (let i = 0; i < 1; i++) {
+    //         window.onload()
+    //     }
+    // }
 
-    window.onload = () => {
+    window.onload= () => {
+    
         const canvas = document.getElementById('canvas');
         const saveButton = document.getElementById('save');
         const loadInput = document.getElementById('load');
@@ -96,7 +97,7 @@ export const Canvas = (props) => {
                 <div>
                     <button id="save" onClick={newCombo}>Save Drawing</button>
                     <button id="refreshPage" onClick={() => {
-                        refreshPage()
+                        window.onload()
                     }}>Start Drawing</button>
                     <div>
                          <canvas id="canvas"></canvas>
