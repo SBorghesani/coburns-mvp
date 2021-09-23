@@ -2,8 +2,8 @@ h2 {
     color:white;
     background-color: rgba(146, 56, 34, 0.753);
     border: 2px solid rgb(255, 255, 255);
-    border-radius: 25px;
-    padding: .5em;
+    border-radius: 2rem;
+    padding: .5rem;
 }
 
 button {
@@ -12,7 +12,7 @@ button {
 
 .save__button {
     box-shadow: 3px 2px 2px black;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 /* fieldset {
@@ -25,14 +25,14 @@ button {
 }
 
 select {
-    height: 2em;
-    margin-top: 1.5em;
-    margin-bottom: 1em;
-    margin-left: 2em;
+    height: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
 }
 
 .optionPic {
-    padding-left: 10em;
+    padding-left: 10rem;
 }
 
 fieldset {
@@ -40,15 +40,15 @@ fieldset {
     /* width: 30%; */
     align-items: center;   
     box-shadow: 5px 2px 2px black; 
-    margin: 2px;
+    margin: .5rem;
     background-color: rgba(146, 56, 34, 0.822);
 }
 
 .customDrawing{
     background-color: rgba(146, 56, 34, 0.616);
     border: solid;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     float: right;
     box-shadow: 10px 5px 5px black;
 }
@@ -57,10 +57,10 @@ fieldset {
     display: flex;
     flex-direction: column;
     align-items: center;  
-    border: 5px solid black;
+    border: .5rem solid black;
     margin-right: 20%;
     margin-left: 20%;
-    padding-bottom: 5px;
+    padding-bottom: .25rem;
     background-color: rgba(255, 255, 255, 0.466);
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
     background-image: url(../../images/combo-list-background.png);
@@ -74,7 +74,7 @@ fieldset {
     border: 5px solid black;
     margin-right: 20%;
     margin-left: 20%;
-    padding-bottom: 5px;
+    padding-bottom: .25rem;
     background-color: rgba(255, 255, 255, 0.466);
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
     background-image: url(../../images/combo-list-background.png);

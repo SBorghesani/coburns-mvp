@@ -1,10 +1,10 @@
 .orderForm{
     display: flex;
     color: white;
-    font-size: 1em;
+    font-size: 1rem;
     flex-direction: column;
     align-items: center;
-    border: 5px solid black;
+    border: .25rem solid black;
     margin-right: 25%;
     margin-left: 25%;
     background-color: rgba(255, 255, 255, 0.466);
@@ -13,5 +13,5 @@
 }
 
 label {
-    margin-right: 1em;
+    margin-right: 1rem;
 }
