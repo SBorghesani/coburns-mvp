@@ -15,11 +15,10 @@ button {
     font-size: 1.5em;
 }
 
-fieldset {
+/* fieldset {
     display: flex;
     align-content: center;
-    min-width: 28em;
-}
+} */
 
 .form-group {
     display: flex;
@@ -38,7 +37,7 @@ select {
 
 fieldset {
     display: flex;
-    width: 30%;
+    /* width: 30%; */
     align-items: center;   
     box-shadow: 5px 2px 2px black; 
     margin: 2px;
@@ -59,8 +58,8 @@ fieldset {
     flex-direction: column;
     align-items: center;  
     border: 5px solid black;
-    margin-right: 40em;
-    margin-left: 40em;
+    margin-right: 20%;
+    margin-left: 20%;
     padding-bottom: 5px;
     background-color: rgba(255, 255, 255, 0.466);
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
@@ -73,8 +72,8 @@ fieldset {
     flex-direction: column;
     align-items: center;  
     border: 5px solid black;
-    margin-right: 40em;
-    margin-left: 40em;
+    margin-right: 20%;
+    margin-left: 20%;
     padding-bottom: 5px;
     background-color: rgba(255, 255, 255, 0.466);
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
