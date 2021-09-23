@@ -99,7 +99,7 @@ export const Canvas = (props) => {
                         refreshPage()
                     }}>Start Drawing</button>
                     <div>
-                        <canvas id="canvas"></canvas>
+                         <canvas id="canvas"></canvas>
                     </div>
                 </div>
             </div>
