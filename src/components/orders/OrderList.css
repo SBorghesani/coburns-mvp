@@ -1,13 +1,13 @@
 .orders__container {
     display: flex;
     flex-wrap: wrap;
-    flex-direction:row;
+    flex-direction: row;
+    justify-content: center;
     max-width: fit-content;
-    margin-left: 10%;
     background-image: url(../../images/combo-list-background.png);
     border: 5px solid black;
-    margin-right: 16em;
-    margin-left: 16em;
+    margin-right: 10%;
+    margin-left: 10%;
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
 }
 
