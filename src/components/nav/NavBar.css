@@ -1,11 +1,27 @@
+link {
+    border-style: solid;
+    color: black;
+}
+
 .navbar {
-    height: 10em;
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: rgba(146, 57, 34, 0.829);
+    color: white;
+    margin-top: 0;
+    margin-left: 0;
+    height: 3em;
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    color:white;   
+}
+
+.navbar__link {
+    font-size: 1.5em;
+    color: rgb(196, 195, 195);
 }

@@ -1,0 +1,18 @@
+.canvas__container {
+    align-items: center;
+}
+
+#save {
+  margin-left: 20px ;
+  margin-right: 20px;
+}
+
+#canvas {
+    border-style: double;
+    background-color: rgb(153, 150, 147);
+    margin-left: 20px;
+}
+
+.customDrawing {
+  text-size-adjust: 900%;
+}

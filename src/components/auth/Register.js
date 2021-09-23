@@ -22,7 +22,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("coburn_customer", createdUser.id)
-                                history.push("/")
+                                history.push("/home")
                             }
                         })
                 }
@@ -37,7 +37,6 @@ export const Register = (props) => {
         copy[evt.target.id] = evt.target.value
         setUser(copy)
     }
-
 
     return (
         <main style={{ textAlign: "center" }}>

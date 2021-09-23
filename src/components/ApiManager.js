@@ -74,6 +74,11 @@ export const getCombination = (id) => {
         .then(res => res.json())
 }
 
+export const getCanvasCombo = (id) => {
+    return fetch (`http://localhost:8088/savedCombinations/${id}`)
+        .then(res => res.json())
+}
+
 export const updateCombination = (id, com) => {
     return fetch(`http://localhost:8088/savedCombinations/${id}`, {
         method: "PUT",
