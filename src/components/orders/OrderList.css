@@ -5,14 +5,14 @@
     justify-content: center;
     max-width: fit-content;
     background-image: url(../../images/combo-list-background.png);
-    border: 5px solid black;
+    border: .25rem solid black;
     margin-right: 10%;
     margin-left: 10%;
     box-shadow: 10px 5px 5px rgb(0, 0, 0);
 }
 
 .order__list{
-    padding: 0 2em 1em 2em;
+    padding: 0 2rem 1rem 2rem;
     box-shadow: 10px 5px 5px black;
 }
 
