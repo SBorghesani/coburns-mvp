@@ -80,7 +80,7 @@ export const Combinations = () => {
             body: JSON.stringify(newCombination)
         }
 
-        return fetch("http://localhost:8088/savedCombinations", fetchOptions)
+        return fetch("https://coburns-exclusive-bchgr.ondigitalocean.app/savedCombinations", fetchOptions)
             .then(() => {
                 history.push("/myCombinations")
             })
