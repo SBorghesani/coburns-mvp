@@ -84,7 +84,6 @@ export const CombinationEdit = () => {
 
     return (
         <>
-            <p>{combo.id}</p>
             <form className="edit__container">
                 <h2>🛠 Edit Combination 🛠</h2>
                 <fieldset>
@@ -190,12 +189,12 @@ export const CombinationEdit = () => {
                 <button className="btn btn-primary" onClick={newCombo}>
                     Update
                 </button>
+                {combo.customDrawing ?
                 <div className="customDrawing">
-                    <p>Custom Drawing:</p>
-                    {
-                        combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="400" height="300" /> : 'No Custom Drawing'
-                    }
+                    <p>Custom Drawing:</p>                  
+                         <img className="custom__drawing" src={combo?.customDrawing} width="400" height="300" />                   
                 </div>
+                : ''}
             </form>
         </>
     )
