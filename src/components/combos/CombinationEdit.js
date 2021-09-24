@@ -73,7 +73,8 @@ export const CombinationEdit = () => {
             hingeId: combo?.hingeId,
             dimensionsId: combo?.dimensionsId,
             price: combo.price,
-            userId: parseInt(currentUser)
+            userId: parseInt(currentUser),
+            customDrawing: combo.customDrawing
         }
 
         updateCombination(comboId, updatedCombo)
