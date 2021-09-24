@@ -46,7 +46,7 @@ export const Register = (props) => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Coburns Exclusive</h1>
+                <h2>Please Register for Coburns Exclusive</h2>
                 <fieldset>
                     <label htmlFor="name"> Full Name </label>
                     <input onChange={updateUser}
@@ -61,9 +61,7 @@ export const Register = (props) => {
                     <label htmlFor="email"> Email address </label>
                     <input onChange={updateUser} type="email" id="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
-                <fieldset>
                     <button type="submit"> Register </button>
-                </fieldset>
             </form>
         </main>
     )

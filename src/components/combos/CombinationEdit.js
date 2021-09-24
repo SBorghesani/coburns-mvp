@@ -193,7 +193,7 @@ export const CombinationEdit = () => {
                 <div className="customDrawing">
                     <p>Custom Drawing:</p>
                     {
-                        combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="300" height="300" /> : 'No Custom Drawing'
+                        combo.customDrawing ? <img className="custom__drawing" src={combo?.customDrawing} width="400" height="300" /> : 'No Custom Drawing'
                     }
                 </div>
             </form>
