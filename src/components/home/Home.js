@@ -9,7 +9,7 @@ export const Home = () => {
     return(
 
         <>
-            <h1>Welcome to Coburn's Exclusive</h1>
+            <h2>Welcome to Coburn's Exclusive</h2>
             <div className="about">
                 <section className="about__blurb">
                 <p><b>Since 2009, Coburn’s Exclusive has called Nashville, Tennessee home. We are an architectural metal design and fabrication company.  
